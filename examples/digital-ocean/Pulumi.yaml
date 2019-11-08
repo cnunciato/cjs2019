@@ -1,0 +1,3 @@
+name: digital-ocean
+runtime: nodejs
+description: An example of standing up a DigitalOcean droplet and PostgreSQL cluster.

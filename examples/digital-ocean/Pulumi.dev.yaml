@@ -1,0 +1,5 @@
+config:
+  digital-ocean:sshFingerprint:
+    secure: AAABAIkjdsN8lhEfhknhkFjEytyuEClR1aH0Tepai/DXNJCPJm+YP//B3Czl/jWpHoxN/USdZ2tQX6YG1bJuLYyxB3eJ6g6BHtnk3bTG9g==
+  digitalocean:token:
+    secure: AAABAKay6ncTfPtP45tC/FOKCiaEfuvnDocESb/L2jc0KsYr5P0s3Z23nU9idKMR9fDI66x+quCfu5MtPvUoAXJxCAfCYAhMc5wgEeKxK+bxKxsJwKXW9IL7zCi16Odd

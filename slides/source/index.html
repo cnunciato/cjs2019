@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programming the Cloud with JavaScript</title>
+		<meta name="author" content="Christian Nunciato">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+                <section>
+                    <p>
+                        <small>👉</small>
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <small>👍</small>
+                    </p>
+                </section>
+
+                <!-- Who I am. -->
+				<section>
+					<h3>👋 Christian Nunciato</h3>
+                    <h4><a href="https://twitter.com/cnunciato">@cnunciato</a></h4>
+                    <h4><a href="https://c.nunciato.org">c.nunciato.org</a></h4>
+                    <aside class="notes">
+                        <ul>
+                            <li>Developer here in Seattle.</li>
+                            <li>Fifth CascadiaJS, I think.</li>
+                            <li>Love this conference, excited to be here, but I'm not super excited to be <em>right here</em> &mdash; but I'm grateful be able to speak about something I really care about.</li>
+                            <li>First talk ever, but it's a talk I've been <em>wanting</em> to give for a long time, but never could. <em>Until now.</em></li>
+                        </ul>
+                    </aside>
+				</section>
+
+                <!-- Where I work. -->
+                <section data-background-color="#421D57">
+                    <div>
+                        <svg width="600" height="185" viewBox="0 0 600 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M587.838 24.1698C594.413 24.2805 599.981 18.8314 599.996 12.2501C600.174 5.68033 594.794 0.0836799 588.052 0.000912242C581.442 -0.0803991 576.03 5.2847 575.88 11.792C575.726 18.4707 581.018 24.0548 587.838 24.1698Z" fill="white"/>
+                            <path d="M360.744 33.5757C355.369 33.5757 350.97 37.9771 350.97 43.3565V94.4231C350.97 110.133 338.244 122.868 322.546 122.868C306.847 122.868 294.121 110.133 294.121 94.4231V43.3565C294.121 37.9771 289.723 33.5757 284.347 33.5757C278.971 33.5757 274.573 37.9771 274.573 43.3565V94.4231C274.573 120.936 296.051 142.43 322.546 142.43C349.04 142.43 370.518 120.936 370.518 94.4231V43.3565C370.518 37.9771 366.12 33.5757 360.744 33.5757Z" fill="white"/>
+                            <path d="M245.707 0.554794C240.331 0.554794 235.933 4.95608 235.933 10.3356V132.729C235.933 138.108 240.331 142.51 245.707 142.51C251.083 142.51 255.481 138.108 255.481 132.729V10.3356C255.481 4.95608 251.083 0.554794 245.707 0.554794Z" fill="white"/>
+                            <path d="M587.943 33.5757C582.567 33.5757 578.169 37.9771 578.169 43.3565V132.649C578.169 138.028 582.567 142.43 587.943 142.43C593.319 142.43 597.717 138.028 597.717 132.649V43.3565C597.717 37.9771 593.319 33.5757 587.943 33.5757Z" fill="white"/>
+                            <path d="M207.067 33.5757C201.692 33.5757 197.293 37.9771 197.293 43.3565V94.4231C197.293 110.133 184.567 122.868 168.868 122.868C153.17 122.868 140.444 110.133 140.444 94.4231V43.3565C140.444 37.9771 136.045 33.5757 130.67 33.5757C125.294 33.5757 120.896 37.9771 120.896 43.3565V94.4231C120.896 120.936 142.374 142.43 168.868 142.43C195.363 142.43 216.841 120.936 216.841 94.4231V43.3565C216.841 37.9771 212.443 33.5757 207.067 33.5757Z" fill="white"/>
+                            <path d="M511.091 33.5757C495.48 33.5757 481.653 41.0713 472.892 52.6256C464.132 41.0713 450.305 33.5757 434.694 33.5757C408.199 33.5757 386.721 55.069 386.721 81.5823V132.649C386.721 138.028 391.119 142.43 396.495 142.43C401.871 142.43 406.269 138.028 406.269 132.649V81.5823C406.269 65.8726 418.995 53.1375 434.694 53.1375C450.392 53.1375 463.118 65.8726 463.118 81.5823V132.649C463.118 135.339 464.218 137.784 465.989 139.557C467.761 141.329 470.204 142.43 472.892 142.43H472.892C473.564 142.43 474.221 142.361 474.856 142.23C475.49 142.099 476.103 141.906 476.687 141.658C477.856 141.161 478.909 140.443 479.795 139.557C481.567 137.784 482.666 135.339 482.666 132.649V81.5823C482.666 65.8726 495.392 53.1375 511.091 53.1375C526.79 53.1375 539.516 65.8726 539.516 81.5823V132.649C539.516 138.028 543.914 142.43 549.29 142.43C554.665 142.43 559.064 138.028 559.064 132.649V81.5823C559.064 55.069 537.586 33.5757 511.091 33.5757Z" fill="white"/>
+                            <path d="M54.3888 33.5756C24.3507 33.5756 0.000137135 57.9434 0.000137135 88.0027H0V174.539C0 179.919 4.39832 184.32 9.77407 184.32C15.1497 184.32 19.548 179.919 19.548 174.539V88.0027H19.5481C19.5481 68.7471 35.1469 53.1375 54.3888 53.1375C73.6308 53.1375 89.2295 68.7471 89.2295 88.0027C89.2295 107.258 73.6308 122.868 54.3888 122.868C48.9908 122.868 44.6148 127.247 44.6148 132.649C44.6148 138.051 48.9908 142.43 54.3888 142.43C84.4268 142.43 108.778 118.062 108.778 88.0027C108.778 57.9434 84.4268 33.5756 54.3888 33.5756Z" fill="white"/>
+                            <path d="M203.462 22.647C203.462 22.6017 203.449 22.5599 203.448 22.5149C203.442 22.3157 203.421 22.1185 203.389 21.9213C203.015 17.6205 199.449 14.234 195.055 14.234C193.703 14.234 192.444 14.5831 191.312 15.1507C189.304 6.47631 181.57 0.000823975 172.291 0.000823975C164.146 0.000823975 157.171 4.98299 154.225 12.0649C152.205 10.7612 149.805 9.99622 147.223 9.99622C140.072 9.99622 134.275 15.797 134.275 22.9527C134.275 26.6896 137.189 27.1091 141.964 27.1091L199.047 27.1094C201.823 27.1094 203.451 24.8897 203.448 22.6461C203.453 22.6463 203.457 22.6465 203.462 22.647Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="https://pulumi.com/">https://pulumi.com</a>
+                    </div>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>I work at a little company called Pulumi, on an open-source project also called Pulumi, just around the corner here in Seattle.</li>
+                            <li>You'll learn a bit about it today, along with some other tools and things.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- What this talk is going to be about. -->
+                <section>
+                    <h2>Programming the Cloud with JavaScript</h2>
+                    <aside class="notes">
+                        <ol>
+                            <li>Going to go pretty fast, 'cause we have a lot to cover.</li>
+                            <li>
+                                Three parts:
+                                <ol>
+                                    <li>How I came to care about all this infrastructure stuff.</li>
+                                    <li>What infra as code is, what it looks like, why it matters, and so on.</li>
+                                    <li>Some examples of neat things you can do with it today.</li>
+                                </ol>
+                            </li>
+                            <li>Okay. So, just to kick things off, a very short bit about me &rarr;</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <!-- Bit about me. -->
+                <section data-background-image="media/images/lego-me.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>I'm just this guy who makes web apps, you know? That's what I do.</li>
+                            <li>Went to school to make movies, but spent half my time doodling in cinematography class about all the webapps I'd make when I got out of film school.</li>
+                            <li>And I kind of love all the web stuff -- CSS, JavaScript, REST, APIs, SQL, languages, opsy stuff, etc.</li>
+                            <li>I'm definitely front-end focused, bit of a UX nerd, but the apps I like to make generally need the full stack.</li>
+                            <li>And I've been doing this a long time &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- My first website. -->
+                <section data-background-video="media/video/website-1.mp4">
+                    <aside class="notes">
+                        <ul>
+                            <li>This is my first website. Old enough to vote. Still runs, Classic ASP FTW.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- First website arch diagram. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/arch-website-1.svg" width="70%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>Arch diagram of first website. Just a website.</li>
+                            <li>Physical server, Windows, pushed my files over FTP, straight to prod, and if something weng wrong, I fixed it in Notepad.</li>
+                            <li>Times were simpler then.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Current website. -->
+                <section data-background-video="media/video/website-2.mp4">
+                    <aside class="notes">
+                        <ul>
+                            <li>This is my current website.</li>
+                            <li>Dad now, take lots of pictures, shoot lots of video, and this site how I capture my moments -- it's my little corner of the web, my one art project, sort of.</li>
+                            <li>Been building it up and tearing it down for the better part of a decade, and it's still not perfect, but mechanically at least, in terms of what I can do with it, I'm pretty happy with it.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Current website arch diagram. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/arch-website-2.svg" width="78%" class="plain"style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>Arch diagram (of sorts) of my current website. <em>Looks</em> maybe a little overengineered, but it's totally not.</li>
+                            <li>I <em>need</em> it to be this way in order to get the workflow I want -- to take a picture with my phone, or shoot a long video, and with a single gesture, have it end up on a static website driven off Git commits that belongs to me, and not, like, Facebook.</li>
+                            <li>If it didn't work this way, I wouldn't use it. And I don't think I'd have been able to make this without some of the tools and techniques we'll talk about today.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- About five years ago... -->
+                <section data-background-image="media/images/dog-kyle-hanson.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>About five years ago, I realized this -- that if I wanted to be able to build the stuff I really wanted to build -- professionally, but also just creatively -- I'd have to go out and really learn how to manage my own infrastructure.</li>
+                            <li>Could keep pushing to Heroku, and I'd probably be okay there, I just wanted to <em>know</em> more -- I wanted to khow all this stuff really worked, so I could do it myself.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- So I landed at Chef, and learned of IaC. -->
+                <section data-background-image="media/images/chef-swag.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>So I landed at a company called Chef, and there, I was introduced to &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section data-background-image="media/images/chef-swag.jpg" data-background-opacity="0.1">
+                    <h3>Infrastructure as Code</h3>
+                    <aside class="notes">
+                        <ul>
+                            <li>the concept of "infrastructure as code."</li>
+                            <li>Sounded buzzwordy and vague to me at the time, but really is about something very specific and kind of at the core of modern software automation and delivery today.</li>
+                            <li>So if by "infrastructure", we mean this stuff &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Infrastructure. -->
+                <section data-background-image="media/images/infrastructure-taylor-vick.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li> -- the servers, networks, storage, DNS, higher-level services, and so on -- the <em>stuff</em> our apps need to survive...</li>
+                            <li>then "infrastructure as code" is just the representation of all (or most) of that stuff as code &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Infrastructure as code. -->
+                <section data-background-image="media/images/ghost-recipe.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>like this, so that we can manage it much like we've learned how to manage our software.</li>
+                            <li>Why would we do this? Well, the journey sometimes starts out a little like this &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Without IaC. -->
+                <section data-background-video="media/video/digital-ocean.mp4">
+                    <aside class="notes">
+                        <ul>
+                            <li>This is me, clicking around in the D.O. dashboard, creating a virtual machine and a database in order to stand up a typical web application, Googling around to figure out how to install some stuff. Just doing the thing.</li>
+                            <li>Totally works, took about a half-hour to stand up this app, and really wasn't too bad, and at the end of it, I had a working thing.</li>
+                            <li>But this approach brings with it a few problems. &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- But this brings a few problems. -->
+                <section>
+                    <h2>😬</h2>
+                    <p class="fragment">Can't see what's inside.</p>
+                    <p class="fragment">Can't duplicate it.</p>
+                    <p class="fragment">Can't scale it out easily.</p>
+                    <p class="fragment">Can't recover from disaster.</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>For one, you can't see what's inside -- you can't look at this server from the outside and see what's on it, what's installed, what version of an app we're running, and so on.</li>
+                            <li>You can't duplicate it -- it's a "unique snowflake". If you had to make another one of these, you'd have to do this all this stuff all over again -- not terrible, but not a party, either.</li>
+                            <li>You can't scale it out. If this app took off, and you needed like five or ten more instances of it, you've got a little work to do -- and then anything that needs doing on one of them (bumping Node, releasing an app), needs doing on <em>all</em> of them, and since we're human, we're likely to mess that up once in a while, too.</li>
+                            <li>And you can't recover from disaster. Things go wrong. It is super simple to delete the wrong thing in a dashboard, and if those machines all disappeared and couldn't be built up from scratch easily &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Rosie -->
+                <section data-background-image="media/images/rosie-crying.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>... you're in for a sad, sad time.</li>
+                            <li>This is my daughter. I got her permission.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Infra as code extracts us from the process. -->
+                <section data-background-color="#F7FAFC" data-transition="fade-out">
+                    <img src="media/images/guy-cli.svg" width="75%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>Infrastructure as code fixes these problems by taking our hands out of the computers &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Infra as code extracts us from the process. -->
+                <section data-background-color="#F7FAFC" data-transition="fade-in">
+                    <img src="media/images/guy-tools.svg" width="75%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>... and putting them into our IDEs, where we can write code that expresses what we want, and let the tools run that code to figure out how to make it happen.</li>
+                            <li>Cool. So what's it look like?</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- One of two buckets. -->
+                <section>
+                    <h3>🧰 Types of Tools</h3>
+                    <p class="fragment">⚙️ Configuration management</p>
+                    <p class="fragment">☁️ Provisioning</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>The tools tend to fall into one of two categories:</li>
+                            <li>Configuration management.</li>
+                            <li>Provisioning.</li>
+                            <li>We'll take a quick look at both.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- This is Chef. It's a configuration management tool. -->
+                <section data-background-video="media/video/chef.mp4" data-background-size="contain">
+                    <aside class="notes">
+                        <ul>
+                            <li>This is Chef. Chef is a configuration management tool. </li>
+                            <li>This is a Chef recipe that installs the Nginx web server, sets a default document for it, and starts it.</li>
+                            <li>When I run Chef with this recipe and point it at a server somewhere, Chef will "make it so" -- it will drive that server to the end state I've declared here.</li>
+                            <li>If I run it again, nothing will happen, because that desired state will have been achieved.</li>
+                            <li>Config management tools generally focus on taking existing infrastructure, configuring it -- installing software, creating users and files and things -- and keeping it updated over time.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Some other config management tools. -->
+                <section>
+                    <h3>⚙️ Config-management tools</h3>
+                    <p>Chef (Ruby)</p>
+                    <p class="fragment">Puppet (Puppet Language)</p>
+                    <p class="fragment">Ansible (YAML)</p>
+                    <p class="fragment">SaltStack (YAML)</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Other config-management tools: Puppet, Ansible, Salt.</li>
+                            <li>Config management: take a thing, configure it, keep it configured. Cool.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- This is Terraform. It's a provisioning tool. -->
+                <section data-background-video="media/video/terraform.mp4" data-background-size="contain">
+                    <aside class="notes">
+                        <ul>
+                            <li>This is Terraform. Terraform is a provisioning tool. Provisioning tools create virtual infrastructure from scratch.</li>
+                            <li>Whereas with Chef, we pointed it at a existing machine and said, "make it so", we point Terraform at a cloud, like AWS, and say, "make it so."</li>
+                            <li>Here, I've expressed that I want a virtual machine that I can connect to over SSH, and Terraform figures out how to do that.</li>
+                            <li>You might use Terraform to spin up some infrastructure, then run Chef or Ansible against that infrastructure to configure it, for example.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Some other provisioning tools. -->
+                <section>
+                    <h3>☁️ ️️Provisioning tools</h3>
+                    <p>Terraform (HashiCorp Config Language)</li>
+                    <p class="fragment">AWS CloudFormation (YAML)</p>
+                    <p class="fragment">Azure Resource Manager (JSON)</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Other provisioning tools: CloudFormation and Azure Resource Manager</li>
+                            <li>Provisioners: they make the cloud stuff. Cool.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Two things they all have in common. -->
+                <section>
+                    <h3>✅ Commonalities</h3>
+                    <div class="fragment">
+                        <p>They're <strong>declarative</strong>: We express the <em>what</em>, and the tools determine the <em>how</em>.</p>
+                    </div>
+                    <div class="fragment">
+                        <p>They're <strong>idempotent</strong>: Given an input, we get the same result, however many times we run it.</p>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>These tools generally have two things in common.</li>
+                            <li>They're declarative: We express the what, and the tools determine the how. Instead of saying do this, then this, then this, we say, I want this, and the tools go off and do it.</li>
+                            <li>They're idempotent, which is a term borrowed from functional programming that here means, Given some code as input, we can run that code over and over again and get the same result.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Reliable, repeatable -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/reliable-repeatable.svg" width="55%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>So -- what all this stuff gives us is infrastructure that's more reliable, repeatable, replicable, testable, self-documenting and <em>collaborative</em>, and that just leads to less sadness and more happiness.</li>
+                            <li>Takes a bit of learning, bit of work, but it's super worth it, because it lets us ship <strong>lots of software, really often, really safely</strong>, and that's kind of what it's all about.</li>
+                            <li>And also, it just feels awesome to be able to write code that makes and destroys computers. That's just fun. For some.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- ... and superpowers. So why haven't we used them? -->
+                <section data-background-image="media/images/superman-yogi-purnama.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>Okay. So I learned all this stuff, right, and I loved it &mdash; I was building full-stack apps with my friends, building dad blogs for myself, I drove it all with Chef and Terraform, and I was happy.</li>
+                            <li>But then I'd go to these devops conferences &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section data-background-image="media/images/empty-seats-jonas-jacobsson.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>... and there were no devs. And then I'd come to conferences like this one, and nobody was talking about infra stuff.</li>
+                            <li>Which seemed strange, to me, because this was code, in our wheelhouse, and the tools were super empowering. Why weren't we using them?</li>
+                            <li>I've thought about this a lot, and I don't think it's that we don't care about infrastructure.</li>
+                            <li>I think we'd <em>like</em> to be able to manage this stuff if we could.</li>
+                            <li>I just think we haven't been shown that we <em>can</em> do it, with tools that extend our mental models and that fit into our existing workflows.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- The diagram. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/envs-and-apps.svg" width="85%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>These tools are amazing, they really are -- but they are not made for developers: they're made for managing the operating environment, so their abstractions kind of end there.</li>
+                            <li>WE, as developers, tend to cruise at a much higher altitude. That's my app, in that box there, and I just want my box to work. I know I want Node 10, maybe, but below that, I'm in unfamiliar territory.</li>
+                            <li>If we're going to manage our own infrastructure, we really need the tools and the abstractions to meet us where we are. Or we just won't use them.</li>
+                            <li>And I think that's why we haven't.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Interesting things afoot. -->
+                <section>
+                    <aside class="notes">
+                        <ul>
+                            <li>But over the last year or two, some interesting things have been happening.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- General-purpose languages. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/gen-purpose-languages.svg" width="85%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>One was that some very developer-focused developers, from <em>outside</em> the ops world, recognized this problem and went to work on bringing modern languages -- LIKE JAVASCRIPT -- to the infrastructure party.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- App-friendly cloud resources. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/app-friendly-resources.svg" width="85%" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>Another was that cloud providers like AWS began to move beyond these rather heavyweight constructs like VIRTUAL MACHINE and DATABASE CLUSTER into much more lightweight, application-friendly constructs like FUNCTION, EVENT, ROUTE, TABLE, RECORD...</li>
+                            <li>Things that fit much more naturally into application code.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Bringing it all together. -->
+                <section data-background-color="#F7FAFC" data-transition="fade-out">
+                    <img src="media/images/venns-1.svg" width="75%" class="plain" style="display: block; margin: 0 auto; background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>So it turns out that when you combine the practice of infrastructure as code, and all we've learned there</li>
+                            <li>with the expressive and compositional power of a modern programming language like JavaScript</li>
+                            <li>AND these now very lightweight, app-friendly cloud primitives...</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- New things are possible. -->
+                <section data-background-color="#F7FAFC" data-transition="fade-in">
+                    <img src="media/images/venns-2.svg" width="79%" class="plain" style="display: block; margin: 0 auto; background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>What you get is something we've never really had before.</li>
+                            <li>When I said I couldn't give this talk until now, this is why.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Two tools. -->
+                <section>
+                    <aside class="notes">
+                        <ul>
+                            <li>There are two tools out there that I'm aware of that let us do this now, with JavaScript -- both open-source, both ours to enjoy -- and contribute to.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- One is CDK. -->
+                <section>
+                    <h4><img src="media/images/cdk.png" class="plain" style="background: none; max-width: 15%;" alt=""></h4>
+                    <p>AWS Cloud Development Kit</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>One is AWS Cloud Development Kit. CDK takes JavaScript and transpiles it into CloudFormation YAML, which can be uploaded to AWS and turned into cloud infrastructure.</li>
+                            <li>I won't dive deeply into CDK because I just don't have time, but it's also JavaScript, so it's worth checking out.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- The other is Pulumi. -->
+                <section data-background-color="#2A1337">
+                    <h4><img src="media/images/pulumipus.svg" class="plain" style="background: none; max-width: 20%;" alt=""></h4>
+                    <p style="color: #D7CDDC;">Pulumi</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>The other is Pulumi, which I discovered about a year ago, and I that I now work on myself, and which I will be showing now.</li>
+                            <li>Okay. So.</li>
+                            <li>To get a sense of how it feels to do all of this infrastructure stuff now in JavaScript... &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- What we're going to build. -->
+                <section data-background-color="#F7FAFC">
+                    <img src="media/images/arch-demo.svg" class="plain" style="background: none;">
+                    <aside class="notes">
+                        <ul>
+                            <li>We're going to build a little app that lets us upload pictures and show them on a web page -- something close to my heart, as you know.</li>
+                            <li>We'll upload them to an S3 bucket, turn them into ASCII just for fun, stash them in a serverless key-value store called DynamoDB, and then build an API that lets us render the them in a browser.</li>
+                            <li>Okay? Okay.</li>
+                            <li>Now, this is going to go fast, I've done this as a video -- I did it "live", but I squashed down it just so I could show you something, end to end, and that wasn't totally trivial. Also watching me type is just torture.</li>
+                            <li>All right? So. Here we go.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- The video of the building of it. -->
+                <section data-background-video="media/video/demo.mp4" data-background-size="contain">
+                    <aside class="notes">
+                        <ul>
+                            <li>So I've already installed Pulumi with Homebrew here, so we'll start by creating a new project -- I'll choose TypeScript on AWS, 'cause that's what I like.</li>
+                            <li>
+                                Console:
+                                <ol>
+                                    <li>Tracks our deployments and their diffs and such over time.</li>
+                                    <li>Tracks all the resources in our stacks, their confirgurations, etc.</li>
+                                    <li>It's like a GitHub for cloud apps, kind of.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- What we just did there. -->
+                <section data-background-image="media/images/arch-demo.svg" data-background-size="70%">
+                    <h6>What we just did, there:</h6>
+                    <p class="fragment">We built an <strong>event-driven</strong>, <strong>serverless</strong> application that blends cloud resources and app code into a single JavaScript program.</p>
+                    <div class="fragment">
+                        <p>We <strong>programmed the architecture diagram</strong>.</p>
+                        <h4>🎉</h4>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>We built an event-driven, serverless app that blends cloud resources and application code into a single cohesive JavaScript program.</li>
+                            <li>This <em>is the app</em> -- it's a "cloud resident" app, so to speak. </li>
+                            <li>And we <em>programmed the architecture diagram</em>. We literally said "new Bucket", "new Table", "new API", and there it was.</li>
+                            <li>We could go further, too: we could factor this out into modules, publish to NPM, and we can work at higher and higher levels of abstraction, because we're just working with JavaScript now.</li>
+                            <li>Pretty cool. &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Not all sunshine and rainbows. -->
+                <section data-background-image="media/images/monkeys-park-troopers.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>So I'd love to tell you that it's all gonna be sunshine and rainbows and happy plastic monkeys riding off into the plastic monkey sunset or whatever -- and it totally does feel like that, sometimes...</li>
+                            <li>but sometimes, honestly, it also feels like this &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Dude who's all sad, maybe. -->
+                <section data-background-image="media/images/frustrated-tim-gouw.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>These are new things, after all, the API surfaces are VAST, the SDKs are still evolving, and you'll hit rough edges, too, as with anything new.</li>
+                            <li>But this is the stuff that I, as a JavaScript developer &rarr;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Some kind of positive image here. -->
+                <section data-background-image="media/images/oliver.jpg">
+                    <aside class="notes">
+                        <ul>
+                            <li>have always wanted to exist --</li>
+                            <li>... and that is why I came here today. (Well I also came for the conference, but this is what I wanted to show <em>you</em> today.)</li>
+                            <li>But this is <em>our</em> stuff now, it belongs to us -- our tools, in our toolbox, and that, I think, is awesome.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- Thanks! -->
+                <section data-background-image="media/images/oliver.jpg" data-background-opacity="0.1">
+                    <img src="media/images/thanks.svg" class="plain" style="background: none; max-width: 40%;">
+                    <aside class="notes">
+                        <ul>
+                            <li>Thank you for your time today. If you have questions, come see me.</li>
+                            <li>I have stickers, I have jobs, and I have more fun things to show you.</li>
+                            <li>Now let's all go crush it.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+    		</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				center: true,
+				hash: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello, CascadiaJS!</title>
+    <script src="https://cdn.jsdelivr.net/npm/ansi_up@4.0.4/ansi_up.min.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            fetch("/stage/images")
+                .then(response => {
+                    response.json().then(items => {
+                        var ansi_up = new AnsiUp;
+                        var ol = document.getElementsByTagName("ol")[0];
+
+                        items.forEach(item => {
+                            var li = document.createElement("li");
+                            li.innerHTML = ansi_up.ansi_to_html(item.asciified);
+                            ol.appendChild(li);
+                        });
+                    });
+                });
+        });
+    </script>
+    <style>
+        body {
+            padding: 24px;
+            background: #222;
+            font-family: monospace;
+            font-size: 1.4em;
+        }
+        ol {
+            list-style-type: none;
+        }
+        li {
+            white-space: pre;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <ol></ol>
+</body>
+</html>
