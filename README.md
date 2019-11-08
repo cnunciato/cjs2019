@@ -34,5 +34,5 @@ The easiest way to run these examples is to step through the Pulumi [Getting Sta
 
 ## Keep in Touch!
 
-* [Twitter](https://twitter.com/cnunciato/)
-* [My website](https://chris.nunciato.org/)
+* [twitter.com/cnunciato](https://twitter.com/cnunciato/)
+* [c.nunciato.org](https://chris.nunciato.org/)
