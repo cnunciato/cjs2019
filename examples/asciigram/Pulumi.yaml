@@ -1,3 +1,8 @@
 name: asciigram
 runtime: nodejs
 description: An example of an event-driven, serverless, database-backed website and API service.
+template:
+    config:
+        aws:region:
+            description: The AWS region to deploy into.
+            default: us-west-2
