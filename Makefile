@@ -31,7 +31,7 @@ slides:
 
 .PHONY: publish
 publish:
-	rm -rf slides/dist/www/* && \
+	rm -rf slides/dist/www/**/* && \
 	npm -C slides/source run build && \
 	pulumi -C slides/dist up --yes --skip-preview
 
