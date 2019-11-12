@@ -13,6 +13,6 @@ export AWS_ACCESS_KEY_ID=$YOUR_KEY
 export AWS_SECRET_ACCESS_KEY=$YOUR_SECRET
 ```
 
-And then, just `pulumi up`.
+And then, just `pulumi up`! When you're finished, to tear everything down, run `pulumi destroy`. [See the docs](https://www.pulumi.com/docs/reference/cli/) for more information.
 
 Have fun! And be sure to check out the [Pulumi community Slack](https://slack.pulumi.com/), too.

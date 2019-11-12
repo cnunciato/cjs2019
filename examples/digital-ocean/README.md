@@ -15,6 +15,6 @@ pulumi config set digitalocean:token $YOUR_TOKEN --secret
 pulumi config set sshFingerprint $YOUR_FINGERPRINT --secret
 ```
 
-And then, just `pulumi up`.
+And then, just `pulumi up`! When you're finished, to tear everything down, run `pulumi destroy`. [See the docs](https://www.pulumi.com/docs/reference/cli/) for more information.
 
 Have fun! And be sure to check out the [Pulumi community Slack](https://slack.pulumi.com/), too.
