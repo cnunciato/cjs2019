@@ -4,6 +4,10 @@ Hello, Cascadians! 👋
 
 Thanks for attending my talk and taking the time to explore this repository. Below are a few things you might find useful.
 
+## The talk
+
+You'll find the actual talk on YouTube at https://www.youtube.com/watch?v=nfridRBNfds.
+
 ## Slides
 
 You'll find my slides in `slides/source`. To build and run them locally, just:
