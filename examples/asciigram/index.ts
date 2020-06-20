@@ -23,7 +23,7 @@ bucket.onObjectCreated("handler", async (event) => {
         return;
     }
 
-    const [ record ] = event.Records;1
+    const [ record ] = event.Records;
     const s3 = new aws.sdk.S3();
     const file = await s3.getObject({
         Bucket: bucket.id.get(),
